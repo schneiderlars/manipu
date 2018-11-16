@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Bundle = require('./Bundle');
+const BundleParser = require('./BundleParser');
 
 const _path = Symbol("_path");
 const _bundle = Symbol("_bundle");
@@ -19,7 +20,7 @@ function ManifestReader(path) {
   let filedata = fs.readFileSync(filedescriptor);
   const jsonData = JSON.parse(filedata.toString('utf8'));
 
-  this[_bundle] = new Bundle("test");
+  this[_bundle] = BundleParser().fromJson(jsonData);
 
   return {
     getPath,
