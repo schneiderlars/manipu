@@ -1,5 +1,5 @@
 @startuml
 title Bundle Diagram
-package "Bundle1" {
+package "map-init" {
 }
 @enduml 
