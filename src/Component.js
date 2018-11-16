@@ -1,4 +1,4 @@
-export default class Component {
+module.exports = class Component {
     
     constructor(name, interfaces = []){
         this._name = name;
