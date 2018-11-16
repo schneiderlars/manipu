@@ -8,10 +8,7 @@ const {Command, flags} = require('@oclif/command');
 class ManipuCommand extends Command {
 
   async run() {
-    const {flags} = this.parse(ManipuCommand)
-    const name = flags.name || 'world'
-    this.log(`hello ${name} from .\\src\\index.js`)
-    this.log(flags.path);
+    const {flags} = this.parse(ManipuCommand);
 
     let bundles = [];
     let result;
