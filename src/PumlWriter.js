@@ -1,3 +1,14 @@
+
+
 module.exports.bundleToPuml = function (bundle) {
-    return "asd";
+    if(!bundle){
+        return `@startuml
+        title Bundle Diagram
+        @enduml`
+    }
+    return `@startuml
+    title Bundle Diagram
+    package "${bundle.getName()}" {
+    }
+    @enduml `
 }
