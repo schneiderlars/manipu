@@ -1,5 +1,6 @@
 const ManifestReader = require('./ManifestReader');
 const PumlConverter = require('./PumlConverter');
+const FolderParser = require('./FolderParser');
 
 const fs = require('fs');
 const {Command, flags} = require('@oclif/command');
@@ -12,8 +13,16 @@ class ManipuCommand extends Command {
     this.log(`hello ${name} from .\\src\\index.js`)
     this.log(flags.path);
 
-    let bundle = ManifestReader(flags.path +  "/manifest.json").getBundle();
-    const result = PumlConverter.bundleToPuml(bundle);
+    let bundles = [];
+    if(flags.recursive){
+
+    }else{
+      let bundle = ManifestReader(flags.path +  "/manifest.json").getBundle();
+      bundles.push(bundle);
+    }
+
+
+    const result = PumlConverter.bundleToPuml(bundles);
     fs.writeFile(flags.path + "/bundle.puml", result, function (err) {
       if (err) {
         return console.log(err);
@@ -35,7 +44,8 @@ ManipuCommand.flags = {
   // add --help flag to show CLI version
   help: flags.help({char: 'h'}),
   name: flags.string({char: 'n', description: 'name to print'}),
-  path: flags.string({char: 'p', description: 'dir of manifest.json'})
+  path: flags.string({char: 'p', description: 'dir of manifest.json'}),
+  recursive: flags.string({char: 'r', description: 'read dirs recursive'})
 };
 
 module.exports = ManipuCommand
