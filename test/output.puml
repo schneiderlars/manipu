@@ -1,3 +1,5 @@
 @startuml
 title Bundle Diagram
-@enduml
+package "Bundle1" {
+}
+@enduml 
