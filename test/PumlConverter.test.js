@@ -31,7 +31,8 @@ describe('PumlConverter', function () {
             bundle.addComponent(c1);
             bundle.addComponent(c2);
             const result = PumlConverter.bundleToPuml(bundle);            
-            assert(result.includes(`[Component1] -> [Component2]`));            
+            assert(result.includes(`[Component1] -> [Component2]`));
+            assert(result.includes(`[Component2] <<i2>>`));
         });
     });
 });

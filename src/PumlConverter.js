@@ -17,7 +17,8 @@ function createComponents(bundle) {
     let result = "";
     const components = bundle.getComponents();    
     for (let component of components) {
-        result += `[${component.getName()}]
+        let interfaces = component.getInterfaces();
+        result += `[${component.getName()}] <<${interfaces.join(",")}>>
         `;
     }    
     return result;
