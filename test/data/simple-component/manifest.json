@@ -1,0 +1,62 @@
+{
+  "name": "coordinatetransformer",
+  "version": "4.6.0-SNAPSHOT",
+  "title": "Coordinate Transformer",
+  "description": "--CORE FUNCTIONALITY-- The Coordinate Transformer transforms geometries from a source coordinate system to a target coordinate system.",
+  "vendor": "con terra GmbH",
+  "icon": {},
+  "keywords": [
+    "mapping",
+    "transformation"
+  ],
+  "licenses": [
+    {}
+  ],
+  "main": "main",
+  "layer": "module",
+  "i18n": [
+    "bundle"
+  ],
+  "startLevel": 34,
+  "bundle": true,
+  "productName": "map.apps",
+  "components": [
+    {
+      "name": "CoordinateTransformer",
+      "provides": [
+        "ct.api.coordinatetransformer.CoordinateTransformer",
+        "coordinatetransformer.CoordinateTransformer"
+      ]
+    },
+    {
+      "name": "ProjectionStoreFactory",
+      "instanceFactory": true,
+      "immediate": true,
+      "properties": {
+        "id": "coordinateTransformerProjectionStore",
+        "useIn": [
+          "dataform"
+        ]
+      },
+      "references": [
+        {
+          "name": "_coordinateTransformer",
+          "providing": "ct.api.coordinatetransformer.CoordinateTransformer"
+        }
+      ]
+    },
+    {
+      "name": "GeometryServiceTransformer",
+      "provides": [
+        "ct.api.coordinatetransformer.CoordinateTransformer"
+      ],
+      "enabled": false,
+      "references": [
+        {
+          "name": "_geometryService",
+          "providing": "geometryservice.GeometryService"
+        }
+      ]
+    }
+  ]
+}
