@@ -9,15 +9,32 @@ module.exports.bundleToPuml = function (bundle) {
     package "${bundle.getName()}" {
         ${createComponents(bundle)}
     }
+    ${createReferences(bundle)}
     @enduml `
 }
 
 function createComponents(bundle) {
-    const components = bundle.getComponents();    
     let result = "";
+    const components = bundle.getComponents();    
     for (let component of components) {
         result += `[${component.getName()}]
         `;
+    }    
+    return result;
+}
+
+function createReferences(bundle) {
+    let result = "";
+    const components = bundle.getComponents();    
+    for (let component of components) {
+        const references = component.getReferences();
+        for (let interface of references) {
+            const refComponents = bundle.getComponentsByInterface(interface);
+            for (let refComponent of refComponents) {
+                result += `[${component.getName()}] -> [${refComponent.getName()}]
+                `;
+            }            
+        }                
     }    
     return result;
 }

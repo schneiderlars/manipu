@@ -16,4 +16,11 @@ module.exports = class Bundle {
     getComponents() {
         return this._components.values();
     }
+
+    getComponentsByInterface(interfaceName) {
+        return Array.from(this._components.values())
+            .filter(component => {
+                return component.getInterfaces().includes(interfaceName);
+            });
+    }
 }

@@ -13,8 +13,8 @@ class ManipuCommand extends Command {
 
 
     const bundle = new Bundle("map-init");
-    const c1 = new Component("Component1");
-    const c2 = new Component("Component2");
+    const c1 = new Component("Component1", ["int1"]);
+    const c2 = new Component("Component2", ["int2"], ["int1"]);
     bundle.addComponent(c1);
     bundle.addComponent(c2);
     const result = PumlConverter.bundleToPuml(bundle); 
