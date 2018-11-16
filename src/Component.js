@@ -2,7 +2,7 @@ module.exports = class Component {
     
     constructor(name, interfaces = []){
         this._name = name;
-        this._interfaces = intefaces;
+        this._interfaces = interfaces;
     }
 
     getName(){
