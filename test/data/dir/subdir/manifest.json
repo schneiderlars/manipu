@@ -1,0 +1,8 @@
+{
+  "name": "Bundle",
+  "components": [
+    {
+      "name": "Component"
+    }
+  ]
+}
