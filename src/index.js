@@ -15,6 +15,11 @@ class ManipuCommand extends Command {
 
     let bundles = [];
     if(flags.recursive){
+      let manifestPaths = FolderParser().findManifestFiles(flags.path);
+      manifestPaths.forEach(path => {
+        let bndl = ManifestReader(path).getBundle();
+        bundles.push(bndl);
+      })
 
     }else{
       let bundle = ManifestReader(flags.path +  "/manifest.json").getBundle();
