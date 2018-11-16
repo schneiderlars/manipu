@@ -18,7 +18,8 @@ function createComponents(bundle) {
     const components = bundle.getComponents();    
     for (let component of components) {
         let interfaces = component.getInterfaces();
-        result += `[${component.getName()}] <<${interfaces.join(",")}>>
+        let interfacesString = interfaces.length ? ` <<${interfaces.join(",")}>>` : ""
+        result += `[${component.getName()}]${interfacesString}
         `;
     }    
     return result;
@@ -32,7 +33,7 @@ function createReferences(bundle) {
         for (let interface of references) {
             const refComponents = bundle.getComponentsByInterface(interface);
             for (let refComponent of refComponents) {
-                result += `[${component.getName()}] -> [${refComponent.getName()}]
+                result += `[${component.getName()}] --> [${refComponent.getName()}]
                 `;
             }            
         }                
