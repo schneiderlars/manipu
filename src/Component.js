@@ -1,8 +1,9 @@
 module.exports = class Component {
     
-    constructor(name, interfaces = []){
+    constructor(name, interfaces = [], references = []){
         this._name = name;
         this._interfaces = interfaces;
+        this._references = references;
     }
 
     getName(){
@@ -13,4 +14,8 @@ module.exports = class Component {
         return this._interfaces;
     }
 
-}
+    getReferences(){
+        return this._references;
+    }
+
+};

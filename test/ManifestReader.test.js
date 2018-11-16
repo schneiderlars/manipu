@@ -17,10 +17,13 @@ describe('ManifestReader', () => {
     assert(false, "Error was not thrown");
   });
 
-/*  it('should return Bundle object with components', () => {
+ /* it('should return Bundle object with components', () => {
     const manifestReader = ManifestReader("./test/data/simple-component/manifest.json");
 
     const bundle = manifestReader.getBundle();
+
+    assert.equal(bundle.getName(), "coordinatetransformer");
+    assert.equal(bundle.getComponents(), 3)
 
   });*/
 
