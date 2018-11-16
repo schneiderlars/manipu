@@ -37,6 +37,7 @@
   },
   "repository": "schneiderlars/manipu",
   "scripts": {
-    "test": "nyc mocha --forbid-only \"test/**/*.test.js\""
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "test-debug": "nyc mocha --forbid-only \"test/**/*.test.js\"  --inspect-brk"
   }
 }
