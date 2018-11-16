@@ -1,5 +1,3 @@
-
-
 module.exports.bundleToPuml = function (bundle) {
     if(!bundle){
         return `@startuml
