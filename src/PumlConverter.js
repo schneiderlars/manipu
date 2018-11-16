@@ -16,7 +16,8 @@ function createComponents(bundle) {
     const components = bundle.getComponents();    
     let result = "";
     for (let component of components) {
-        result += `[${component.getName()}]`;
+        result += `[${component.getName()}]
+        `;
     }    
     return result;
 }
