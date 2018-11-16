@@ -13,3 +13,6 @@ Convert manifest.json to PlantUML
 <!-- usage -->
 # Commands
 <!-- commands -->
+
+# Coole Sache ;-) 
+Hat Spaß gemacht heute. Gruß an alle... 
