@@ -14,20 +14,20 @@ class ManipuCommand extends Command {
     this.log(flags.path);
 
     let bundles = [];
-    if(flags.recursive){
+    let result;
+    if (flags.recursive) {
       let manifestPaths = FolderParser().findManifestFiles(flags.path);
       manifestPaths.forEach(path => {
         let bndl = ManifestReader(path).getBundle();
         bundles.push(bndl);
-      })
+      });
+      result = PumlConverter.bundlesToPuml(bundles);
 
-    }else{
-      let bundle = ManifestReader(flags.path +  "/manifest.json").getBundle();
-      bundles.push(bundle);
+    } else {
+      let bundle = ManifestReader(flags.path + "/manifest.json").getBundle();
+      result = PumlConverter.bundleToPuml(bundle);
     }
 
-
-    const result = PumlConverter.bundleToPuml(bundles);
     fs.writeFile(flags.path + "/bundle.puml", result, function (err) {
       if (err) {
         return console.log(err);
@@ -41,7 +41,7 @@ class ManipuCommand extends Command {
 ManipuCommand.description = `Describe the command here
 ...
 Extra documentation goes here
-`
+`;
 
 ManipuCommand.flags = {
   // add --version flag to show CLI version
