@@ -1,5 +1,7 @@
 @startuml
 title Bundle Diagram
 package "map-init" {
+    [Component1]
+    [Component2]
 }
 @enduml 
