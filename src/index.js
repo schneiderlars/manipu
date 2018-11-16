@@ -1,4 +1,6 @@
-const {Command, flags} = require('@oclif/command')
+const Component = "./Component";
+const Bundle = "./Bundle";
+const {Command, flags} = require('@oclif/command');
 
 class ManipuCommand extends Command {
   async run() {
