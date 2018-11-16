@@ -1,30 +1,26 @@
-const Bundle = require('./Bundle');
-const Component = require('./Component');
-const PumlConverter = require('./PumlConverter')
+const ManifestReader = require('./ManifestReader');
+const PumlConverter = require('./PumlConverter');
 
 const fs = require('fs');
 const {Command, flags} = require('@oclif/command');
 
 class ManipuCommand extends Command {
+
   async run() {
     const {flags} = this.parse(ManipuCommand)
     const name = flags.name || 'world'
     this.log(`hello ${name} from .\\src\\index.js`)
+    this.log(flags.path);
 
-
-    const bundle = new Bundle("map-init");
-    const c1 = new Component("Component1", ["int1"]);
-    const c2 = new Component("Component2", ["int2"], ["int1"]);
-    bundle.addComponent(c1);
-    bundle.addComponent(c2);
-    const result = PumlConverter.bundleToPuml(bundle); 
-    fs.writeFile("test.puml", result, function(err) {
-      if(err) {
-          return console.log(err);
+    let bundle = ManifestReader(flags.path +  "/manifest.json").getBundle();
+    const result = PumlConverter.bundleToPuml(bundle);
+    fs.writeFile(flags.path + "/bundle.puml", result, function (err) {
+      if (err) {
+        return console.log(err);
       }
-  
+
       console.log("The file was saved!");
-  }); 
+    });
   }
 }
 
@@ -39,6 +35,7 @@ ManipuCommand.flags = {
   // add --help flag to show CLI version
   help: flags.help({char: 'h'}),
   name: flags.string({char: 'n', description: 'name to print'}),
-}
+  path: flags.string({char: 'p', description: 'dir of manifest.json'})
+};
 
 module.exports = ManipuCommand
