@@ -6,10 +6,14 @@ module.exports = class Bundle {
     }
 
     addComponent(component) {
-        this._components.set(component.name, component);
+        this._components.set(component.getName(), component);
     }
 
     getName() {
         return this._name;
+    }
+
+    getComponents() {
+        return this._components.values();
     }
 }
