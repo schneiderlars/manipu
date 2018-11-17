@@ -22,21 +22,20 @@ module.exports.bundlesToPuml = function (bundles) {
   let bundlesString = `@startuml
     title Bundle Diagram
     `;
+  let referencesString = "";
   for (let bundle of bundles) {
     const name = bundle.getName();
     const components = createComponents(bundle);
-    if (!name || components.length === 0) {
+    if (!name || components.length === 0 || name.includes("-config")) {
       continue
     }
     bundlesString += `package "${name}" {
       ${components}
     }
     `;
+    referencesString += `${createReferences(bundles, bundle.getComponents())}`
   }
-  for (let bundle of bundles) {
-    bundlesString += `${createReferences(bundles, bundle.getComponents())}`
-  }
-  bundlesString += `@enduml`;
+  bundlesString = bundlesString + referencesString + `@enduml`;
   return bundlesString;
 };
 
