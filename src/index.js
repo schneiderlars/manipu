@@ -47,7 +47,7 @@ ManipuCommand.flags = {
   help: flags.help({char: 'h'}),
   name: flags.string({char: 'n', description: 'name to print'}),
   path: flags.string({char: 'p', description: 'dir of manifest.json'}),
-  recursive: flags.string({char: 'r', description: 'read dirs recursive'})
+  recursive: flags.boolean({char: 'r', description: 'read dirs recursive', required: false})
 };
 
 module.exports = ManipuCommand
