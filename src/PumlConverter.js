@@ -24,11 +24,12 @@ module.exports.bundlesToPuml = function (bundles) {
     `;
   for (let bundle of bundles) {
     const name = bundle.getName();
-    if (!name) {
+    const components = createComponents(bundle);
+    if (!name || components.length === 0) {
       continue
     }
     bundlesString += `package "${name}" {
-      ${createComponents(bundle)}
+      ${components}
     }
     `;
   }
