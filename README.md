@@ -11,6 +11,10 @@ Convert manifest.json to PlantUML
 <!-- toc -->
 # Usage
 <!-- usage -->
+
+``` 
+>> C:\data\coding\github\manipu> .\bin\run '--path=C:\data\coding\ct-mapapps\ct-mapapps-webapp\src\main\js\manager' -r
+```
 # Commands
 <!-- commands -->
 
