@@ -10,7 +10,7 @@ module.exports.bundleToPuml = function (bundle) {
         ${createComponents(bundle)}
     }
     ${createReferences([bundle], bundle.getComponents())}
-    @enduml `
+    @enduml`
 };
 
 module.exports.bundlesToPuml = function (bundles) {
@@ -20,11 +20,13 @@ module.exports.bundlesToPuml = function (bundles) {
         @enduml`
   }
   let bundlesString = `@startuml
-    title Bundle Diagram`;
+    title Bundle Diagram
+    `;
   for (let bundle of bundles) {
     bundlesString += `package "${bundle.getName()}" {
       ${createComponents(bundle)}
-    }`
+    }
+    `;
   }
   for (let bundle of bundles) {
     bundlesString += `${createReferences(bundles, bundle.getComponents())}`
@@ -49,8 +51,8 @@ function createReferences(bundles, components) {
   let result = "";
   for (let component of components) {
     const references = component.getReferences();
-    for (let interface of references) {
-      const refComponents = getComponentsByInterface(bundles, interface);
+    for (let interfaceName of references) {
+      const refComponents = getComponentsByInterface(bundles, interfaceName);
       for (let refComponent of refComponents) {
         result += `[${component.getName()}] --> [${refComponent.getName()}]
                 `;
@@ -60,6 +62,12 @@ function createReferences(bundles, components) {
   return result;
 }
 
-function getComponentsByInterface(bundles, interface) {
-  return bundles[0].getComponentsByInterface(interface);
+function getComponentsByInterface(bundles, interfaceName) {
+  let components = [];
+  for (let bundle of bundles) {
+    for (let referencedComponent of bundle.getComponentsByInterface(interfaceName)) {
+      components.push(referencedComponent)
+    }
+  }
+  return components;
 }
