@@ -23,7 +23,11 @@ module.exports.bundlesToPuml = function (bundles) {
     title Bundle Diagram
     `;
   for (let bundle of bundles) {
-    bundlesString += `package "${bundle.getName()}" {
+    const name = bundle.getName();
+    if (!name) {
+      continue
+    }
+    bundlesString += `package "${name}" {
       ${createComponents(bundle)}
     }
     `;
