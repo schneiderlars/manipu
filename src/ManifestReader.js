@@ -18,7 +18,12 @@ function ManifestReader(path) {
   this[_path] = path;
   let filedescriptor = fs.openSync(path, 'r');
   let filedata = fs.readFileSync(filedescriptor);
-  const jsonData = JSON.parse(filedata.toString('utf8'));
+  let jsonData;
+  try{
+    jsonData = JSON.parse(filedata.toString('utf8'));
+  } catch (e) {
+    console.log("Error with JSON at: " + path);
+  }
 
   this[_bundle] = BundleParser().fromJson(jsonData);
 
